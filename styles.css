@@ -1,0 +1,234 @@
+/* Same display font as the iOS app (Globals / DiceTaleFont). */
+@font-face {
+  font-family: "vinque";
+  src: url("fonts/vinque.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #120d0a;
+  --fg: #f4ebe3;
+  --muted: #b8a99a;
+  --card: #1a1410;
+  /* Warm amber / ember — matches fantasy campfire + wood UI */
+  --accent: #e8a54b;
+  --accent-2: #c76b2e;
+  --ring: rgba(232, 165, 75, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fbf6f0;
+    --fg: #1c1410;
+    --muted: #5c534c;
+    --card: #ffffff;
+    --accent: #c76b2e;
+    --accent-2: #a34e1f;
+    --ring: rgba(199, 107, 46, 0.28);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font: 16px/1.55 vinque, ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  background:
+    radial-gradient(1100px 580px at 8% -8%, color-mix(in oklab, var(--accent) 26%, transparent), transparent 58%),
+    radial-gradient(900px 520px at 100% 0%, color-mix(in oklab, var(--accent-2) 20%, transparent), transparent 55%),
+    var(--bg);
+  color: var(--fg);
+}
+
+a { color: inherit; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.brand span {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+nav.nav a {
+  color: var(--fg);
+  text-decoration: none;
+  opacity: 0.9;
+  margin-left: 16px;
+  font-weight: 600;
+}
+
+nav.nav a.active,
+nav.nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+select.lang {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid color-mix(in oklab, var(--fg) 22%, transparent);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+
+main { padding: 36px 0 24px; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 28px 0 40px;
+}
+
+@media (min-width: 920px) {
+  .hero { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.12;
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.app-store-badge {
+  display: inline-block;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  will-change: opacity, transform;
+}
+
+.app-store-badge:hover {
+  opacity: 0.88;
+  transform: scale(1.02);
+}
+
+.app-store-badge img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-store-badge { transition: none; }
+}
+
+.app-store-badge-small img { height: 36px; }
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-visual img {
+  width: min(100%, 380px);
+  height: auto;
+  border-radius: 22px;
+  border: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+  box-shadow:
+    0 24px 48px -20px rgba(0, 0, 0, 0.65),
+    0 0 0 1px color-mix(in oklab, var(--accent) 15%, transparent);
+}
+
+.section { margin: 36px 0; }
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 860px) {
+  .cards { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.card {
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  border: 1px solid color-mix(in oklab, var(--fg) 8%, transparent);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  margin-top: 8px;
+  content-visibility: auto;
+}
+
+footer {
+  padding: 28px 0 60px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-content p { margin: 0; }
+
+.kbd {
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--fg) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 11px;
+  object-fit: cover;
+}
